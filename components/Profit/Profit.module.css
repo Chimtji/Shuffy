@@ -8,6 +8,7 @@
   padding: 1em;
   border: dashed 0.2em var(--mantine-color-dark-8);
   border-radius: var(--mantine-radius-md);
+  container-type: inline-size;
 
   .content {
     width: max-content;
@@ -16,7 +17,19 @@
 
     .withProfit {
       display: grid;
+      grid-gap: 2em;
       grid-template-columns: 1fr max-content;
+
+      .price {
+        gap: 0.5em;
+      }
+
+      .percent {
+        display: none;
+        @container (min-width: 15em) {
+          display: block;
+        }
+      }
     }
   }
 }

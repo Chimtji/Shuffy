@@ -40,15 +40,15 @@ const Profit: React.FC<TProfitProps> = ({ recipe, className }) => {
       <Group className={classes.content}>
         {hasProfit ? (
           <Group className={classes.withProfit}>
-            <Group>
+            <Group className={classes.price}>
               <Title order={3}>{price.gold}</Title>
               <Image src={goldCoinImg} component={NextImage} alt={''} fit="contain" width={17} />
               <Title order={3}>{price.silver}</Title>
               <Image src={silverCoinImg} component={NextImage} alt={''} fit="contain" width={17} />
             </Group>
-            <Group>
+            <Box className={classes.percent}>
               <Title order={3}>{profit.percent}%</Title>
-            </Group>
+            </Box>
           </Group>
         ) : (
           <Title order={3} c="dark.5">

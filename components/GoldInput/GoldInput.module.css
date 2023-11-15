@@ -1,7 +1,7 @@
 .wrapper {
   display: grid;
   grid-template-columns: 1fr 3.75em 3.75em;
-  min-width: 11.1em;
+  min-width: 11.3em;
   gap: 0;
   border-radius: var(--mantine-radius-default);
   overflow: hidden;
