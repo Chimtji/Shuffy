@@ -1,0 +1,49 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 3.75em 3.75em;
+  min-width: 11.1em;
+  gap: 0;
+  border-radius: var(--mantine-radius-default);
+  overflow: hidden;
+  border: rem(1px) solid var(--mantine-color-gray-4);
+  height: 100%;
+
+  @mixin dark {
+    border: rem(1px) solid var(--mantine-color-dark-4);
+  }
+}
+
+.inputWrapper,
+.inputRoot,
+.input {
+  height: 100%;
+}
+
+.section {
+  width: max-content;
+  padding: 0;
+  padding-right: 0.5em;
+}
+
+.input {
+  border: none;
+  border-radius: 0;
+  padding-left: 0.5em;
+  padding-right: 1.75em;
+  transition: border-color 100ms ease;
+  &:focus {
+    border: rem(1px) solid var(--mantine-primary-color-filled);
+  }
+}
+.silver {
+  border-left: rem(1px) solid var(--mantine-color-gray-4);
+  border-right: rem(1px) solid var(--mantine-color-gray-4);
+  @mixin dark {
+    border-left: rem(1px) solid var(--mantine-color-dark-4);
+    border-right: rem(1px) solid var(--mantine-color-dark-4);
+  }
+}
+
+.silver,
+.copper {
+}

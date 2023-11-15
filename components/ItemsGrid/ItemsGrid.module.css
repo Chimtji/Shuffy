@@ -1,0 +1,7 @@
+.grid {
+  display: grid;
+  gap: 1em;
+  width: max-content;
+  margin: auto;
+  container-type: inline-size;
+}
