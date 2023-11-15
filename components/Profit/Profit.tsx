@@ -15,6 +15,7 @@ const Profit: React.FC<TProfitProps> = ({ recipe, className }) => {
   const priceVariant = useUiStore(useShallow((state) => state.priceVariant));
 
   const [price, setPrice] = useState<TPrice>(profit.price.unit);
+  const [percentColor, setPercentColor] = useState<string>('dark.0');
   const [hasProfit, setHasProfit] = useState<boolean>(false);
 
   useEffect(() => {
@@ -30,6 +31,24 @@ const Profit: React.FC<TProfitProps> = ({ recipe, className }) => {
       profit.price.unit.gold > 0
     ) {
       setHasProfit(true);
+      if (profit.percent > 0) {
+        setPercentColor('red.8');
+      }
+      if (profit.percent > 5) {
+        setPercentColor('pink.8');
+      }
+      if (profit.percent > 10) {
+        setPercentColor('orange.8');
+      }
+      if (profit.percent > 25) {
+        setPercentColor('yellow.8');
+      }
+      if (profit.percent > 35) {
+        setPercentColor('lime.8');
+      }
+      if (profit.percent > 50) {
+        setPercentColor('green.8');
+      }
     } else {
       setHasProfit(false);
     }
@@ -47,7 +66,9 @@ const Profit: React.FC<TProfitProps> = ({ recipe, className }) => {
               <Image src={silverCoinImg} component={NextImage} alt={''} fit="contain" width={17} />
             </Group>
             <Box className={classes.percent}>
-              <Title order={3}>{profit.percent}%</Title>
+              <Title order={3} c={percentColor}>
+                {profit.percent}%
+              </Title>
             </Box>
           </Group>
         ) : (

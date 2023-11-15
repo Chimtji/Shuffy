@@ -146,7 +146,9 @@ getAllMaterialsFromRecipes().forEach(({ id, type, ...recipeMaterial }) => {
           calcPriceToCopper(stackProfit) / productState.quantity,
         );
 
-        const profitPercent = (calcPriceToCopper(stackProfit) / totalMaterialCost) * 100;
+        const profitPercent = Math.round(
+          (calcPriceToCopper(stackProfit) / totalMaterialCost) * 100,
+        );
 
         useMiningStore.setState(
           produce((s) => {

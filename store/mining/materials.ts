@@ -44,7 +44,7 @@ const miningMaterials: TMiningMaterials = {
       unitPrice: { gold: 0, silver: 0, copper: 0 },
       stackPrice: { gold: 0, silver: 0, copper: 0 },
       quantity: 1,
-      recipes: ['silverBar'],
+      recipes: [],
     },
     bar: {
       image: 'silver_bar.jpg',
@@ -52,7 +52,7 @@ const miningMaterials: TMiningMaterials = {
       unitPrice: { gold: 0, silver: 0, copper: 0 },
       stackPrice: { gold: 0, silver: 0, copper: 0 },
       quantity: 1,
-      recipes: ['silverBar'],
+      recipes: [],
     },
   },
   iron: {
