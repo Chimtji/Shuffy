@@ -23,13 +23,21 @@ const MaterialItem = <A extends TAreaName>({
     })),
   );
 
-  const [val, setVal] = useState(1);
+  const [val, setVal] = useState(quantity);
 
   if (!material) {
     return <div>No material</div>;
   }
 
   useEffect(() => {
+    if (material.quantity < quantity) {
+      updateMaterialQuantity({
+        area: area,
+        id: id,
+        type: type,
+        quantity: quantity,
+      });
+    }
     setVal(material.quantity);
   }, [material]);
 
