@@ -8,4 +8,5 @@ export type TMaterialCardProps<A extends TAreaName> = {
   items: TRecipeItem<A>[];
   variant: 'product' | 'material';
   className?: any;
+  requirement?: string;
 };

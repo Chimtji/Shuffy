@@ -38,4 +38,13 @@
 }
 .quantity {
   max-width: 3.5em;
+  &:disabled {
+    color: var(--mantine-color-gray-4) !important;
+  }
+}
+
+.requirement {
+  border-top: 1px solid var(--mantine-color-dark-4);
+  margin-top: 0.25em;
+  padding-top: 0.5em;
 }

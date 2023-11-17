@@ -12,26 +12,17 @@ import { TPrice } from '@/types';
 import { TAreaName, TAreasState } from '@/store/materials/types';
 
 const Profit = <A extends TAreaName>({ recipe, className }: TProfitProps<A>) => {
-  const { priceVariant, area } = useUiStore(
-    useShallow((state) => ({ priceVariant: state.priceVariant, area: state.area })),
-  );
+  const { area } = useUiStore(useShallow((state) => ({ area: state.area })));
   const profit = useMiningStore(
     useShallow(
       (state) => (state[area].calculations as TAreasState[A]['calculations'])[recipe].profit,
     ),
   );
 
-  const [price, setPrice] = useState<TPrice>(profit.price.unit);
   const [percentColor, setPercentColor] = useState<string>('dark.0');
   const [hasProfit, setHasProfit] = useState<boolean>(false);
 
   useEffect(() => {
-    if (priceVariant === 'unit') {
-      setPrice(profit.price.unit);
-    } else {
-      setPrice(profit.price.stack);
-    }
-
     if (
       profit.price.unit.copper > 0 ||
       profit.price.unit.silver > 0 ||
@@ -60,7 +51,7 @@ const Profit = <A extends TAreaName>({ recipe, className }: TProfitProps<A>) => 
       setHasProfit(false);
     }
     // console.log('update component');
-  }, [priceVariant, profit]);
+  }, [profit]);
 
   return (
     <Box className={`${className} ${classes.root}`}>
@@ -68,9 +59,9 @@ const Profit = <A extends TAreaName>({ recipe, className }: TProfitProps<A>) => 
         {hasProfit ? (
           <Group className={classes.withProfit}>
             <Group className={classes.price}>
-              <Title order={3}>{price.gold}</Title>
+              <Title order={3}>{profit.price.stack.gold}</Title>
               <Image src={goldCoinImg} component={NextImage} alt={''} fit="contain" width={17} />
-              <Title order={3}>{price.silver}</Title>
+              <Title order={3}>{profit.price.stack.silver}</Title>
               <Image src={silverCoinImg} component={NextImage} alt={''} fit="contain" width={17} />
             </Group>
             <Box className={classes.percent}>

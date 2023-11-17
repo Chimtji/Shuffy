@@ -62,6 +62,7 @@ export type TRecipe<A extends TAreaName> = {
   name: string;
   materials: TRecipeItem<A>[];
   product: TRecipeItem<A>;
+  requirement?: string;
 };
 
 export type TMaterials<A extends TAreaName> = {

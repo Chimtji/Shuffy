@@ -60,6 +60,7 @@ const MaterialItem = <A extends TAreaName>({
         <GoldInput id={id} type={type} />
         <NumberInput
           className={classes.quantity}
+          classNames={{ input: classes.quantity }}
           value={val}
           hideControls
           disabled={variant === 'product'}

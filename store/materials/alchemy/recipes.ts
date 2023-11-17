@@ -3,7 +3,6 @@ import { TRecipes } from '../types';
 const tailoringRecipes: TRecipes<'tailoring'> = {
   boltOfLinenCloth: {
     name: 'Bolt of Linen Cloth Recipe',
-    requirement: 'Tailoring Level 1',
     materials: [
       {
         id: 'linen',
@@ -19,7 +18,6 @@ const tailoringRecipes: TRecipes<'tailoring'> = {
   },
   boltOfMageweave: {
     name: 'Bolt of Mageweave Recipe',
-    requirement: 'Tailoring Level 175',
     materials: [
       {
         id: 'mageweave',
@@ -35,7 +33,6 @@ const tailoringRecipes: TRecipes<'tailoring'> = {
   },
   boltOfRuneCloth: {
     name: 'Bolt of Runecloth Recipe',
-    requirement: 'Tailoring Level 250',
     materials: [
       {
         id: 'rune',
@@ -51,7 +48,6 @@ const tailoringRecipes: TRecipes<'tailoring'> = {
   },
   boltOfSilkCloth: {
     name: 'Bolt of Silk Cloth Recipe',
-    requirement: 'Tailoring Level 125',
     materials: [
       {
         id: 'silk',
@@ -67,7 +63,6 @@ const tailoringRecipes: TRecipes<'tailoring'> = {
   },
   boltOfWoolenCloth: {
     name: 'Bolt of Woolen Cloth Recipe',
-    requirement: 'Tailoring Level 75',
     materials: [
       {
         id: 'wool',

@@ -1,5 +1,6 @@
 import * as mining from './mining';
 import * as tailoring from './tailoring';
+import * as elemental from './elemental';
 
 import {
   TMiningCalculations,
@@ -14,6 +15,12 @@ import {
   TTailoringMaterials,
   TTailoringRecipes,
 } from './tailoring/types';
+import {
+  TElementalCalculations,
+  TElementalMaterialType,
+  TElementalMaterials,
+  TElementalRecipes,
+} from './elemental/types';
 
 export type TAreas = {
   tailoring: {
@@ -28,6 +35,12 @@ export type TAreas = {
     recipes: TMiningRecipes;
     calculations: TMiningCalculations;
   };
+  elemental: {
+    materialTypes: TElementalMaterialType;
+    materials: TElementalMaterials;
+    recipes: TElementalRecipes;
+    calculations: TElementalCalculations;
+  };
 };
 
 export const areasState: TAreasState = {
@@ -40,5 +53,10 @@ export const areasState: TAreasState = {
     materials: mining.materials,
     recipes: mining.recipes,
     calculations: mining.calculations,
+  },
+  elemental: {
+    materials: elemental.materials,
+    recipes: elemental.recipes,
+    calculations: elemental.calculations,
   },
 };

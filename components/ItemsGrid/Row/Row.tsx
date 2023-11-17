@@ -11,7 +11,12 @@ const Row = <A extends TAreaName>({ recipe, id }: TRowProps<A>) => {
     <Box className={classes.row} mb="lg">
       <MaterialsCard<A> items={recipe.materials} variant="material" className={classes.materials} />
       <IconArrowNarrowRight size={36} className={`${classes.icon} ${classes.convertIcon}`} />
-      <MaterialsCard<A> items={[recipe.product]} variant="product" className={classes.product} />
+      <MaterialsCard<A>
+        items={[recipe.product]}
+        variant="product"
+        className={classes.product}
+        requirement={recipe.requirement}
+      />
       <IconArrowsRight size={36} className={`${classes.icon} ${classes.resultIcon}`} />
       <Profit recipe={id} className={classes.profit} />
     </Box>

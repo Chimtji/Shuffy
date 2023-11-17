@@ -40,12 +40,11 @@ export function AreaPicker() {
             ),
           },
           {
-            value: 'elements',
-            disabled: true,
+            value: 'elemental',
             label: (
               <Center>
                 <IconEye style={{ width: rem(16), height: rem(16) }} />
-                <Box ml={10}>Elements (Coming..)</Box>
+                <Box ml={10}>Elements</Box>
               </Center>
             ),
           },
