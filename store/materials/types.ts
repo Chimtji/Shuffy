@@ -4,28 +4,28 @@ import { TAreas } from './areas';
 export type TAreaName = keyof TAreas;
 
 export type TStoreFunctions = {
-  updatePrice: <T extends TAreaName>({
+  updatePrice: <A extends TAreaName>({
     area,
     id,
     type,
     price,
     variant,
   }: {
-    area: TAreaName;
-    id: TAreas[T]['materials'];
-    type: TAreas[T]['materialTypes'];
+    area: A;
+    id: TAreas[A]['materials'];
+    type: TAreas[A]['materialTypes'];
     price: TPrice;
     variant: 'unit' | 'stack';
   }) => any;
-  updateMaterialQuantity: <T extends TAreaName>({
+  updateMaterialQuantity: <A extends TAreaName>({
     area,
     id,
     type,
     quantity,
   }: {
-    area: TAreaName;
-    id: TAreas[T]['materials'];
-    type: TAreas[T]['materialTypes'];
+    area: A;
+    id: TAreas[A]['materials'];
+    type: TAreas[A]['materialTypes'];
     quantity: number;
   }) => any;
 };
@@ -37,6 +37,7 @@ export type TAreasState = {
     calculations: TCalculations<area>;
   };
 };
+
 export type TMaterialsStore = TAreasState & TStoreFunctions;
 
 export type TMaterialItem = {
@@ -47,9 +48,9 @@ export type TMaterialItem = {
   quantity: number;
 };
 
-export type TRecipeItem<T extends TAreaName> = {
-  id: TAreas[T]['materials'];
-  type: TAreas[T]['materialTypes'];
+export type TRecipeItem<A extends TAreaName> = {
+  id: TAreas[A]['materials'];
+  type: TAreas[A]['materialTypes'];
   quantity: number;
 };
 
@@ -57,20 +58,20 @@ export type TMaterial<T extends string> = {
   [type in T]: TMaterialItem;
 };
 
-export type TRecipe<T extends TAreaName> = {
+export type TRecipe<A extends TAreaName> = {
   name: string;
-  materials: TRecipeItem<T>[];
-  product: TRecipeItem<T>;
+  materials: TRecipeItem<A>[];
+  product: TRecipeItem<A>;
 };
 
-export type TMaterials<T extends TAreaName> = {
-  [id in TAreas[T]['materials']]: TMaterial<TAreas[T]['materialTypes']>;
+export type TMaterials<A extends TAreaName> = {
+  [id in TAreas[A]['materials']]: TMaterial<TAreas[A]['materialTypes']>;
 };
 
-export type TRecipes<T extends TAreaName> = { [id in TAreas[T]['recipes']]: TRecipe<T> };
+export type TRecipes<A extends TAreaName> = { [id in TAreas[A]['recipes']]: TRecipe<A> };
 
-export type TCalculations<T extends TAreaName> = {
-  [id in TAreas[T]['calculations']]: {
+export type TCalculations<A extends TAreaName> = {
+  [id in TAreas[A]['calculations']]: {
     profit: {
       percent: number;
       price: {

@@ -6,7 +6,7 @@ import { uuid } from 'uuidv4';
 import useMaterialsStore from '@/store/materials/store';
 import { useShallow } from 'zustand/react/shallow';
 import useUiStore from '@/store/ui/store';
-import { TAreas } from '@/store/materials/types';
+import { TAreas } from '@/store/materials/areas';
 
 const ItemsGrid = () => {
   const area = useUiStore(useShallow((state) => state.area));
@@ -15,12 +15,10 @@ const ItemsGrid = () => {
     <Box className={classes.grid} w="100%">
       <RowHead />
       {Object.keys(recipes).map((name) => (
-        <Row
+        <Row<typeof area>
           key={uuid()}
-          recipe={{
-            ...recipes[name as keyof typeof recipes],
-            id: name as TAreas[typeof area]['recipes'],
-          }}
+          recipe={recipes[name as keyof typeof recipes]}
+          id={name as TAreas[typeof area]['recipes']}
         />
       ))}
     </Box>

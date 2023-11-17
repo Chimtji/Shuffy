@@ -7,13 +7,18 @@ import useMiningStore from '@/store/materials/store';
 import { useShallow } from 'zustand/react/shallow';
 import { useEffect, useState } from 'react';
 import useUiStore from '@/store/ui/store';
-import { TAreaName } from '@/store/materials/types';
+import { TAreaName, TAreasState } from '@/store/materials/types';
 
-const MaterialItem: React.FC<TMaterialCardItem<TAreaName>> = ({ id, type, quantity, variant }) => {
-  const area = useUiStore(useShallow((state) => state.area));
+const MaterialItem = <A extends TAreaName>({
+  id,
+  type,
+  quantity,
+  variant,
+}: TMaterialCardItem<A>) => {
+  const area = useUiStore(useShallow((state) => state.area)) as A;
   const { material, updateMaterialQuantity } = useMiningStore(
     useShallow((state) => ({
-      material: state[area].materials[id][type],
+      material: (state[area].materials as TAreasState[A]['materials'])[id][type],
       updateMaterialQuantity: state.updateMaterialQuantity,
     })),
   );

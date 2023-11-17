@@ -9,13 +9,17 @@ import useMiningStore from '@/store/materials/store';
 import { useShallow } from 'zustand/react/shallow';
 import useUiStore from '@/store/ui/store';
 import { TPrice } from '@/types';
-import { TAreaName } from '@/store/materials/types';
+import { TAreaName, TAreasState } from '@/store/materials/types';
 
-const Profit: React.FC<TProfitProps<TAreaName>> = ({ recipe, className }) => {
+const Profit = <A extends TAreaName>({ recipe, className }: TProfitProps<A>) => {
   const { priceVariant, area } = useUiStore(
     useShallow((state) => ({ priceVariant: state.priceVariant, area: state.area })),
   );
-  const profit = useMiningStore(useShallow((state) => state[area].calculations[recipe].profit));
+  const profit = useMiningStore(
+    useShallow(
+      (state) => (state[area].calculations as TAreasState[A]['calculations'])[recipe].profit,
+    ),
+  );
 
   const [price, setPrice] = useState<TPrice>(profit.price.unit);
   const [percentColor, setPercentColor] = useState<string>('dark.0');
@@ -55,6 +59,7 @@ const Profit: React.FC<TProfitProps<TAreaName>> = ({ recipe, className }) => {
     } else {
       setHasProfit(false);
     }
+    // console.log('update component');
   }, [priceVariant, profit]);
 
   return (

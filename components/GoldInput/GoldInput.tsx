@@ -10,15 +10,16 @@ import { useShallow } from 'zustand/react/shallow';
 import useUiStore from '@/store/ui/store';
 import { useEffect, useState } from 'react';
 import { TPrice } from '@/types';
+import { TAreaName, TAreasState } from '@/store/materials/types';
 
-const GoldInput: React.FC<TGoldInputProps> = ({ id, type }) => {
+const GoldInput = <A extends TAreaName>({ id, type }: TGoldInputProps<A>) => {
   const { priceVariant, area } = useUiStore(
     useShallow((state) => ({ priceVariant: state.priceVariant, area: state.area })),
   );
   const { unitPrice, updatePrice, stackPrice } = useMaterialsStore(
     useShallow((state) => ({
-      unitPrice: state[area].materials[id][type].unitPrice,
-      stackPrice: state[area].materials[id][type].stackPrice,
+      unitPrice: (state[area].materials as TAreasState[A]['materials'])[id][type].unitPrice,
+      stackPrice: (state[area].materials as TAreasState[A]['materials'])[id][type].stackPrice,
       updatePrice: state.updatePrice,
     })),
   );

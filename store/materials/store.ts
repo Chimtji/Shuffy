@@ -64,110 +64,113 @@ const useMaterialsStore = create<TMaterialsStore>()(
   ),
 );
 
-Object.keys(getAllMaterialsFromRecipes(useMaterialsStore.getState())).forEach((area) => {
-  console.log(getAllMaterialsFromRecipes(useMaterialsStore.getState()));
-  getAllMaterialsFromRecipes(useMaterialsStore.getState())[area as TAreaName]?.forEach(
-    ({ id, type, ...recipeMaterial }) => {
-      const state = useMaterialsStore.getState()[area as TAreaName];
-      const material = state.materials[id][type];
-      const recipes = state.recipes;
-      const relatedRecipes = findRecipes(id, type, recipes);
+const allMaterials = getAllMaterialsFromRecipes(useMaterialsStore.getState());
 
-      useMaterialsStore.subscribe(
-        (state) => state[area as TAreaName].materials[id][type].quantity,
-        (quantity, prevQuantity) => {
-          if (quantity === prevQuantity) {
-            return;
-          }
+allMaterials.forEach(({ id, type, area, ...recipeMaterial }) => {
+  // const id = idName as TAreas[typeof area]['materials'];
+  const initState = useMaterialsStore.getState()[area as TAreaName];
+  const material = initState.materials[id as keyof typeof initState.materials];
+  const recipes = initState.recipes;
+  const relatedRecipes = findRecipes(id, type, recipes);
 
-          console.log('here');
+  useMaterialsStore.subscribe(
+    (state) =>
+      state[area].materials[id as keyof (typeof state)[typeof area]['materials']][type]['quantity'],
+    (quantity, prevQuantity) => {
+      if (quantity === prevQuantity) {
+        return;
+      }
 
-          relatedRecipes.forEach((recipe) => {
-            const recipeProduct = recipe.product;
-            const otherMaterials = recipe.materials.filter((m) => m.id !== id);
+      relatedRecipes.forEach((recipe) => {
+        const recipeProduct = recipe.product;
+        const otherMaterials = recipe.materials.filter((m) => m.id !== id);
 
-            const clampedQuantity = calcQuantity(quantity as number, recipeMaterial.quantity);
-            const multiplier = clampedQuantity / recipeMaterial.quantity;
+        const clampedQuantity = calcQuantity(quantity as number, recipeMaterial.quantity);
+        const multiplier = clampedQuantity / recipeMaterial.quantity;
 
-            // @TODO: We do not take to account if recipes use different quantities for the same material
+        // @TODO: We do not take to account if recipes use different quantities for the same material
 
-            useMaterialsStore.setState(
-              produce((s) => {
-                if (clampedQuantity !== quantity) {
-                  s[area].materials[id][type].quantity = clampedQuantity;
-                }
+        useMaterialsStore.setState(
+          produce((s) => {
+            if (clampedQuantity !== quantity) {
+              s[area].materials[id][type].quantity = clampedQuantity;
+            }
 
-                const newStackPrice = calcStackPrice(
-                  clampedQuantity as number,
-                  s[area].materials[id][type].unitPrice as TPrice,
-                );
-
-                if (newStackPrice !== material.stackPrice) {
-                  s[area].materials[id][type].stackPrice = calcStackPrice(
-                    clampedQuantity as number,
-                    s[area].materials[id][type].unitPrice as TPrice,
-                  );
-                }
-
-                otherMaterials.forEach((m) => {
-                  const newQuantity = multiplier * m.quantity;
-                  s[area].materials[m.id][m.type].quantity = newQuantity;
-                });
-
-                const productQuantity = multiplier * recipeProduct.quantity;
-                s[area].materials[recipeProduct.id][recipeProduct.type].quantity = productQuantity;
-              }),
+            const newStackPrice = calcStackPrice(
+              clampedQuantity as number,
+              s[area].materials[id][type].unitPrice as TPrice,
             );
-          });
-        },
-        { equalityFn: shallow },
-      );
-      useMaterialsStore.subscribe(
-        (state) => [
-          state[area as TAreaName].materials[id][type].stackPrice,
-          state[area as TAreaName].materials[id][type].unitPrice,
-        ],
-        () => {
-          relatedRecipes.forEach((recipe) => {
-            let totalMaterialCost = 0;
-            recipe.materials.forEach((material) => {
-              const materialState =
-                useMaterialsStore.getState()[area as TAreaName].materials[material.id][
-                  material.type
-                ];
-              totalMaterialCost += calcPriceToCopper(materialState.stackPrice);
+
+            if (newStackPrice !== material['stackPrice']) {
+              s[area].materials[id][type].stackPrice = calcStackPrice(
+                clampedQuantity as number,
+                s[area].materials[id][type].unitPrice as TPrice,
+              );
+            }
+
+            otherMaterials.forEach((m) => {
+              const newQuantity = multiplier * m.quantity;
+              s[area].materials[m.id][m.type].quantity = newQuantity;
             });
 
-            const productState =
-              useMaterialsStore.getState()[area as TAreaName].materials[recipe.product.id][
-                recipe.product.type
-              ];
-
-            const stackProfit = calcPriceDifference(
-              calcCopperToPrice(totalMaterialCost),
-              productState.stackPrice,
-            );
-
-            const unitProfit = calcCopperToPrice(
-              calcPriceToCopper(stackProfit) / productState.quantity,
-            );
-
-            const profitPercent = Math.round(
-              (calcPriceToCopper(stackProfit) / totalMaterialCost) * 100,
-            );
-
-            useMaterialsStore.setState(
-              produce((s) => {
-                s[area].calculations[recipe.id].profit.price.stack = stackProfit;
-                s[area].calculations[recipe.id].profit.price.unit = unitProfit;
-                s[area].calculations[recipe.id].profit.percent = profitPercent;
-              }),
-            );
-          });
-        },
-        { equalityFn: shallow },
-      );
+            const productQuantity = multiplier * recipeProduct.quantity;
+            s[area].materials[recipeProduct.id][recipeProduct.type].quantity = productQuantity;
+          }),
+        );
+      });
     },
+    { equalityFn: shallow },
+  );
+  useMaterialsStore.subscribe(
+    (state) => [
+      state[area].materials[id as keyof (typeof state)[typeof area]['materials']][type][
+        'stackPrice'
+      ],
+      state[area].materials[id as keyof (typeof state)[typeof area]['materials']][type][
+        'unitPrice'
+      ],
+    ],
+    (stack, unit) => {
+      const state = useMaterialsStore.getState()[area as TAreaName];
+      // console.log(id, type, area, stack, unit);
+      relatedRecipes.forEach((recipe) => {
+        let totalMaterialCost = 0;
+
+        recipe.materials.forEach((material) => {
+          const materialState =
+            state.materials[material.id as keyof typeof state.materials][material.type];
+          totalMaterialCost += calcPriceToCopper(materialState['stackPrice']);
+        });
+
+        const productState =
+          state.materials[recipe.product.id as keyof typeof state.materials][recipe.product.type];
+
+        const stackProfit = calcPriceDifference(
+          calcCopperToPrice(totalMaterialCost),
+          productState['stackPrice'],
+        );
+
+        console.log('product State:', productState);
+
+        const unitProfit = calcCopperToPrice(
+          calcPriceToCopper(stackProfit) / productState['quantity'],
+        );
+
+        const profitPercent = Math.round(
+          (calcPriceToCopper(stackProfit) / totalMaterialCost) * 100,
+        );
+
+        // console.log(stackProfit, unitProfit, profitPercent);
+        useMaterialsStore.setState(
+          produce((s) => {
+            s[area].calculations[recipe.id].profit.price.stack = stackProfit;
+            s[area].calculations[recipe.id].profit.price.unit = unitProfit;
+            s[area].calculations[recipe.id].profit.percent = profitPercent;
+          }),
+        );
+      });
+    },
+    { equalityFn: shallow },
   );
 });
 

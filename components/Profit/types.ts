@@ -1,3 +1,4 @@
-import { TAreaName, TAreas } from '@/store/materials/types';
+import { TAreas } from '@/store/materials/areas';
+import { TAreaName } from '@/store/materials/types';
 
-export type TProfitProps<T extends TAreaName> = { recipe: TAreas[T]['recipes']; className?: any };
+export type TProfitProps<A extends TAreaName> = { recipe: TAreas[A]['recipes']; className?: any };
