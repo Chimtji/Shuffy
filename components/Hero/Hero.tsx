@@ -1,4 +1,4 @@
-import { Title, Text, Anchor, Box } from '@mantine/core';
+import { Title, Text, Box } from '@mantine/core';
 import classes from './Hero.module.css';
 
 export function Hero() {

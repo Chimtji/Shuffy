@@ -2,15 +2,18 @@ import GoldInput from '@/components/GoldInput/GoldInput';
 import { Image, Box, Text, NumberInput } from '@mantine/core';
 import NextImage from 'next/image';
 import classes from './MaterialCard.module.css';
-import { TMaterialItem } from './types';
-import useMiningStore from '@/store/mining/store';
+import { TMaterialCardItem } from './types';
+import useMiningStore from '@/store/materials/store';
 import { useShallow } from 'zustand/react/shallow';
 import { useEffect, useState } from 'react';
+import useUiStore from '@/store/ui/store';
+import { TAreaName } from '@/store/materials/types';
 
-const MaterialItem: React.FC<TMaterialItem> = ({ id, type, quantity, variant }) => {
+const MaterialItem: React.FC<TMaterialCardItem<TAreaName>> = ({ id, type, quantity, variant }) => {
+  const area = useUiStore(useShallow((state) => state.area));
   const { material, updateMaterialQuantity } = useMiningStore(
     useShallow((state) => ({
-      material: state.materials[id][type],
+      material: state[area].materials[id][type],
       updateMaterialQuantity: state.updateMaterialQuantity,
     })),
   );
@@ -50,6 +53,7 @@ const MaterialItem: React.FC<TMaterialItem> = ({ id, type, quantity, variant }) 
           onChange={(e) => setVal(e as number)}
           onBlur={(e) => {
             updateMaterialQuantity({
+              area: area,
               id: id,
               type: type,
               quantity: val,

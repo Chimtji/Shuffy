@@ -1,12 +1,11 @@
-import { TMiningRecipeItem } from '@/store/mining/types';
-import { TCopper } from '@/types';
+import { TAreaName, TRecipeItem } from '@/store/materials/types';
 
-export type TMaterialItemChange = { name: string; copper: TCopper };
+export type TMaterialCardItem<T extends TAreaName> = TRecipeItem<T> & {
+  variant: 'product' | 'material';
+};
 
-export type TMaterialItem = TMiningRecipeItem & { variant: 'product' | 'material' };
-
-export type TMaterialCardProps = {
-  items: TMiningRecipeItem[];
+export type TMaterialCardProps<T extends TAreaName> = {
+  items: TRecipeItem<T>[];
   variant: 'product' | 'material';
   className?: any;
 };

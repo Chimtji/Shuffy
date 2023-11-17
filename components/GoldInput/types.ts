@@ -1,6 +1,6 @@
-import { TMiningMaterialIds, TMiningMaterialType } from '@/store/mining/types';
+import { TAreaName, TAreas } from '@/store/materials/types';
 
 export type TGoldInputProps = {
-  id: TMiningMaterialIds;
-  type: TMiningMaterialType;
+  id: TAreas[TAreaName]['materials'];
+  type: TAreas[TAreaName]['materialTypes'];
 };

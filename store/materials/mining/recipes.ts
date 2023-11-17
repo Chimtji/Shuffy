@@ -1,6 +1,6 @@
-import { TMiningRecipes } from './types';
+import { TRecipes } from '../types';
 
-const miningRecipes: TMiningRecipes = {
+const miningRecipes: TRecipes<'mining'> = {
   copperBar: {
     name: 'Copper Bar Recipe',
     materials: [

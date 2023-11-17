@@ -5,14 +5,17 @@ import goldCoinImg from '@/public/coins/gold.gif';
 import silverCoinImg from '@/public/coins/silver.gif';
 import { TProfitProps } from './types';
 import { useEffect, useState } from 'react';
-import useMiningStore from '@/store/mining/store';
+import useMiningStore from '@/store/materials/store';
 import { useShallow } from 'zustand/react/shallow';
 import useUiStore from '@/store/ui/store';
 import { TPrice } from '@/types';
+import { TAreaName } from '@/store/materials/types';
 
-const Profit: React.FC<TProfitProps> = ({ recipe, className }) => {
-  const profit = useMiningStore(useShallow((state) => state.calculations[recipe].profit));
-  const priceVariant = useUiStore(useShallow((state) => state.priceVariant));
+const Profit: React.FC<TProfitProps<TAreaName>> = ({ recipe, className }) => {
+  const { priceVariant, area } = useUiStore(
+    useShallow((state) => ({ priceVariant: state.priceVariant, area: state.area })),
+  );
+  const profit = useMiningStore(useShallow((state) => state[area].calculations[recipe].profit));
 
   const [price, setPrice] = useState<TPrice>(profit.price.unit);
   const [percentColor, setPercentColor] = useState<string>('dark.0');

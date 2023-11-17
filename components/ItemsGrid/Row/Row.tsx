@@ -1,16 +1,12 @@
-import { Box, em, useMantineTheme } from '@mantine/core';
+import { Box } from '@mantine/core';
 import classes from './Row.module.css';
 import { IconArrowNarrowRight, IconArrowsRight } from '@tabler/icons-react';
 import { TRowProps } from './types';
 import MaterialsCard from '@/components/MaterialsCard/MaterialCard';
 import Profit from '@/components/Profit/Profit';
-import { useMediaQuery } from '@mantine/hooks';
+import { TAreaName } from '@/store/materials/types';
 
-const Row = ({ recipe }: TRowProps) => {
-  const theme = useMantineTheme();
-  const isSm = useMediaQuery(`(min-width: ${theme.breakpoints.sm})`);
-
-  console.log(isSm);
+const Row = ({ recipe }: TRowProps<TAreaName>) => {
   return (
     <Box className={classes.row} mb="lg">
       <MaterialsCard items={recipe.materials} variant="material" className={classes.materials} />

@@ -1,6 +1,6 @@
-import { TMiningCalculations } from './types';
+import { TCalculations } from '../types';
 
-const miningCalculations: TMiningCalculations = {
+const miningCalculations: TCalculations<'mining'> = {
   copperBar: {
     profit: {
       percent: 0,

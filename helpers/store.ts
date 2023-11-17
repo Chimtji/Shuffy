@@ -1,86 +1,71 @@
-import recipes from '@/store/mining/recipes';
-import useMiningStore from '@/store/mining/store';
-import {
-  TMiningMaterialIds,
-  TMiningMaterialItem,
-  TMiningMaterialType,
-  TMiningRecipe,
-  TMiningRecipeIds,
-  TMiningRecipeItem,
-  TMiningRecipes,
-} from '@/store/mining/types';
 import { removeDuplicates } from '@/utilities';
+import useMaterialsStore from '@/store/materials/store';
+import {
+  TAreaName,
+  TAreas,
+  TMaterialsStore,
+  TRecipe,
+  TRecipeItem,
+  TRecipes,
+} from '@/store/materials/types';
 
-export const findRecipes = (
-  id: TMiningMaterialIds,
-  type: TMiningMaterialType,
-  recipes: TMiningRecipes,
+export const findRecipes = <T extends TAreaName>(
+  id: TAreas[T]['materials'],
+  type: TAreas[T]['materialTypes'],
+  recipes: TRecipes<T>,
 ) => {
-  const result: (TMiningRecipe & { id: TMiningRecipeIds })[] = [];
+  const result: (TRecipe<T> & { id: TAreas[T]['recipes'] })[] = [];
 
   Object.keys(recipes).forEach((name) => {
     const recipe = recipes[name as keyof typeof recipes];
     const material = recipe.materials.find((m) => m.id === id && m.type === type);
     const product = recipe.product;
     if (material) {
-      result.push({ ...recipe, id: name as TMiningRecipeIds });
+      result.push({ ...recipe, id: name as TAreas[T]['recipes'] });
     }
 
     if (product.id === id && product.type === type) {
-      result.push({ ...recipe, id: name as TMiningRecipeIds });
+      result.push({ ...recipe, id: name as TAreas[T]['recipes'] });
     }
   });
 
   return result;
 };
 
-export const getAllMaterialsFromRecipes = (): TMiningRecipeItem[] => {
-  const allMaterials: Record<string, unknown>[] = [];
+export const getAllMaterialsFromRecipes = (state: TMaterialsStore) => {
+  const areas: TAreaName[] = [];
 
-  Object.keys(recipes).forEach((recipeName) => {
-    const materials = recipes[recipeName as keyof typeof recipes].materials;
-    const product = recipes[recipeName as keyof typeof recipes].product;
+  const result: { [area in TAreaName]?: TRecipeItem<area>[] } = {};
 
-    materials.forEach((material) => {
-      allMaterials.push(material);
-    });
-
-    allMaterials.push(product);
+  Object.keys(state).forEach((key) => {
+    if (typeof state[key as keyof TMaterialsStore] != 'function') {
+      result[key as TAreaName] = [];
+      areas.push(key as TAreaName);
+    }
   });
 
-  const result: TMiningRecipeItem[] = removeDuplicates(allMaterials, [
-    'id',
-    'type',
-  ]) as TMiningRecipeItem[];
+  areas.forEach((area) => {
+    Object.keys(state[area].recipes).forEach((recipeName) => {
+      const recipes = state[area].recipes;
+      const materials = recipes[recipeName as keyof typeof recipes].materials;
+      const product = recipes[recipeName as keyof typeof recipes].product;
 
-  return result;
-};
+      materials.forEach((material) => {
+        result[area as TAreaName]?.push(material);
+      });
 
-export const getAllUsedMaterials = (): TMiningMaterialItem[] => {
-  const allMaterials = getAllMaterialsFromRecipes();
-
-  const result = allMaterials.map((material) => {
-    return useMiningStore.getState().materials[material.id][material.type];
-  });
-
-  return result;
-};
-
-export const sanitizedMaterials = (): TMiningRecipeItem[] => {
-  const allMaterials: Record<string, unknown>[] = [];
-
-  Object.keys(recipes).forEach((recipeName) => {
-    const materials = recipes[recipeName as keyof typeof recipes].materials;
-
-    materials.forEach((material) => {
-      allMaterials.push(material);
+      result[area as TAreaName]?.push(product);
     });
   });
 
-  const result: TMiningRecipeItem[] = removeDuplicates(allMaterials, [
-    'id',
-    'type',
-  ]) as TMiningRecipeItem[];
+  Object.keys(result).forEach((area) => {
+    if (result[area as TAreaName]) {
+      result[area as TAreaName] = removeDuplicates(
+        result[area as TAreaName] as TRecipeItem<TAreaName>[],
+        ['id', 'type'],
+      ) as TRecipeItem<TAreaName>[];
+    }
+  });
 
   return result;
 };

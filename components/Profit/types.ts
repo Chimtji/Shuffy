@@ -1,3 +1,3 @@
-import { TMiningRecipeIds } from '@/store/mining/types';
+import { TAreaName, TAreas } from '@/store/materials/types';
 
-export type TProfitProps = { recipe: TMiningRecipeIds; className?: any };
+export type TProfitProps<T extends TAreaName> = { recipe: TAreas[T]['recipes']; className?: any };

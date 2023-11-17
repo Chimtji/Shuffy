@@ -5,18 +5,20 @@ import silverCoinImg from '@/public/coins/silver.gif';
 import copperCoinImg from '@/public/coins/copper.gif';
 import NextImage from 'next/image';
 import { TGoldInputProps } from './types';
-import useMiningStore from '@/store/mining/store';
+import useMaterialsStore from '@/store/materials/store';
 import { useShallow } from 'zustand/react/shallow';
 import useUiStore from '@/store/ui/store';
 import { useEffect, useState } from 'react';
 import { TPrice } from '@/types';
 
 const GoldInput: React.FC<TGoldInputProps> = ({ id, type }) => {
-  const priceVariant = useUiStore(useShallow((state) => state.priceVariant));
-  const { unitPrice, updatePrice, stackPrice } = useMiningStore(
+  const { priceVariant, area } = useUiStore(
+    useShallow((state) => ({ priceVariant: state.priceVariant, area: state.area })),
+  );
+  const { unitPrice, updatePrice, stackPrice } = useMaterialsStore(
     useShallow((state) => ({
-      unitPrice: state.materials[id][type].unitPrice,
-      stackPrice: state.materials[id][type].stackPrice,
+      unitPrice: state[area].materials[id][type].unitPrice,
+      stackPrice: state[area].materials[id][type].stackPrice,
       updatePrice: state.updatePrice,
     })),
   );
@@ -48,6 +50,7 @@ const GoldInput: React.FC<TGoldInputProps> = ({ id, type }) => {
         className={classes.gold}
         onChange={(value) => {
           updatePrice({
+            area: area,
             id: id,
             type: type,
             price: { ...price, gold: value as number },
@@ -70,6 +73,7 @@ const GoldInput: React.FC<TGoldInputProps> = ({ id, type }) => {
         value={price.silver}
         onChange={(value) => {
           updatePrice({
+            area: area,
             id: id,
             type: type,
             price: { ...price, silver: value as number },
@@ -91,6 +95,7 @@ const GoldInput: React.FC<TGoldInputProps> = ({ id, type }) => {
         className={classes.copper}
         onChange={(value) => {
           updatePrice({
+            area: area,
             id: id,
             type: type,
             price: { ...price, copper: value as number },

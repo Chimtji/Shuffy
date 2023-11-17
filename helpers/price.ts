@@ -1,8 +1,5 @@
 import { TCopper, TPercent, TPrice } from '@/types';
 
-const SILVER_PER_GOLD = 100;
-const COPPER_PER_SILVER = 100;
-
 export const calcPriceDifference = (fromAmount: TPrice, toAmount: TPrice) => {
   // Calculate the total values in copper coins
   const fromAmountInCopper = calcPriceToCopper(fromAmount);

@@ -9,6 +9,14 @@ const useUiStore = create<TUiStore>()(
       persist(
         (set, get) => ({
           priceVariant: 'unit',
+          area: 'mining',
+          switchArea: (to) => {
+            set(
+              produce((state) => {
+                state.area = to;
+              }),
+            );
+          },
           switchPriceVariant: () => {
             set(
               produce((state) => {

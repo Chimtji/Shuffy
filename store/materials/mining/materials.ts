@@ -1,6 +1,6 @@
-import { TMiningMaterials } from './types';
+import { TMaterials } from '../types';
 
-const miningMaterials: TMiningMaterials = {
+const miningMaterials: TMaterials<'mining'> = {
   copper: {
     ore: {
       image: 'copper_ore.jpg',
@@ -8,7 +8,6 @@ const miningMaterials: TMiningMaterials = {
       unitPrice: { gold: 0, silver: 0, copper: 0 },
       stackPrice: { gold: 0, silver: 0, copper: 0 },
       quantity: 1,
-      recipes: ['copperBar', 'bronzeBar'],
     },
     bar: {
       image: 'copper_bar.jpg',
@@ -16,7 +15,6 @@ const miningMaterials: TMiningMaterials = {
       unitPrice: { gold: 0, silver: 0, copper: 0 },
       stackPrice: { gold: 0, silver: 0, copper: 0 },
       quantity: 1,
-      recipes: ['copperBar'],
     },
   },
   tin: {
@@ -26,7 +24,6 @@ const miningMaterials: TMiningMaterials = {
       unitPrice: { gold: 0, silver: 0, copper: 0 },
       stackPrice: { gold: 0, silver: 0, copper: 0 },
       quantity: 1,
-      recipes: ['tinBar', 'bronzeBar'],
     },
     bar: {
       image: 'tin_bar.jpg',
@@ -34,7 +31,6 @@ const miningMaterials: TMiningMaterials = {
       unitPrice: { gold: 0, silver: 0, copper: 0 },
       stackPrice: { gold: 0, silver: 0, copper: 0 },
       quantity: 1,
-      recipes: ['tinBar'],
     },
   },
   silver: {
@@ -44,7 +40,6 @@ const miningMaterials: TMiningMaterials = {
       unitPrice: { gold: 0, silver: 0, copper: 0 },
       stackPrice: { gold: 0, silver: 0, copper: 0 },
       quantity: 1,
-      recipes: [],
     },
     bar: {
       image: 'silver_bar.jpg',
@@ -52,7 +47,6 @@ const miningMaterials: TMiningMaterials = {
       unitPrice: { gold: 0, silver: 0, copper: 0 },
       stackPrice: { gold: 0, silver: 0, copper: 0 },
       quantity: 1,
-      recipes: [],
     },
   },
   iron: {
@@ -62,7 +56,6 @@ const miningMaterials: TMiningMaterials = {
       unitPrice: { gold: 0, silver: 0, copper: 0 },
       stackPrice: { gold: 0, silver: 0, copper: 0 },
       quantity: 1,
-      recipes: ['ironBar'],
     },
     bar: {
       image: 'iron_bar.jpg',
@@ -70,7 +63,6 @@ const miningMaterials: TMiningMaterials = {
       unitPrice: { gold: 0, silver: 0, copper: 0 },
       stackPrice: { gold: 0, silver: 0, copper: 0 },
       quantity: 1,
-      recipes: ['ironBar', 'steelBar'],
     },
   },
   coal: {
@@ -80,7 +72,6 @@ const miningMaterials: TMiningMaterials = {
       unitPrice: { gold: 0, silver: 0, copper: 0 },
       stackPrice: { gold: 0, silver: 0, copper: 0 },
       quantity: 1,
-      recipes: ['steelBar'],
     },
     bar: {
       image: '',
@@ -88,7 +79,6 @@ const miningMaterials: TMiningMaterials = {
       unitPrice: { gold: 0, silver: 0, copper: 0 },
       stackPrice: { gold: 0, silver: 0, copper: 0 },
       quantity: 1,
-      recipes: [],
     },
   },
   gold: {
@@ -98,7 +88,6 @@ const miningMaterials: TMiningMaterials = {
       unitPrice: { gold: 0, silver: 0, copper: 0 },
       stackPrice: { gold: 0, silver: 0, copper: 0 },
       quantity: 1,
-      recipes: ['goldBar'],
     },
     bar: {
       image: 'gold_bar.jpg',
@@ -106,7 +95,6 @@ const miningMaterials: TMiningMaterials = {
       unitPrice: { gold: 0, silver: 0, copper: 0 },
       stackPrice: { gold: 0, silver: 0, copper: 0 },
       quantity: 1,
-      recipes: ['goldBar'],
     },
   },
   mithril: {
@@ -116,7 +104,6 @@ const miningMaterials: TMiningMaterials = {
       unitPrice: { gold: 0, silver: 0, copper: 0 },
       stackPrice: { gold: 0, silver: 0, copper: 0 },
       quantity: 1,
-      recipes: ['mithrilBar'],
     },
     bar: {
       image: 'mithril_bar.jpg',
@@ -124,7 +111,6 @@ const miningMaterials: TMiningMaterials = {
       unitPrice: { gold: 0, silver: 0, copper: 0 },
       stackPrice: { gold: 0, silver: 0, copper: 0 },
       quantity: 1,
-      recipes: [],
     },
   },
   truesilver: {
@@ -134,7 +120,6 @@ const miningMaterials: TMiningMaterials = {
       unitPrice: { gold: 0, silver: 0, copper: 0 },
       stackPrice: { gold: 0, silver: 0, copper: 0 },
       quantity: 1,
-      recipes: ['truesilverBar'],
     },
     bar: {
       image: 'truesilver_bar.jpg',
@@ -142,7 +127,6 @@ const miningMaterials: TMiningMaterials = {
       unitPrice: { gold: 0, silver: 0, copper: 0 },
       stackPrice: { gold: 0, silver: 0, copper: 0 },
       quantity: 1,
-      recipes: [],
     },
   },
   thorium: {
@@ -152,7 +136,6 @@ const miningMaterials: TMiningMaterials = {
       unitPrice: { gold: 0, silver: 0, copper: 0 },
       stackPrice: { gold: 0, silver: 0, copper: 0 },
       quantity: 1,
-      recipes: ['thoriumBar'],
     },
     bar: {
       image: 'thorium_bar.jpg',
@@ -160,7 +143,6 @@ const miningMaterials: TMiningMaterials = {
       unitPrice: { gold: 0, silver: 0, copper: 0 },
       stackPrice: { gold: 0, silver: 0, copper: 0 },
       quantity: 1,
-      recipes: [],
     },
   },
   darkIron: {
@@ -170,7 +152,6 @@ const miningMaterials: TMiningMaterials = {
       unitPrice: { gold: 0, silver: 0, copper: 0 },
       stackPrice: { gold: 0, silver: 0, copper: 0 },
       quantity: 1,
-      recipes: ['darkIronBar'],
     },
     bar: {
       image: 'dark_iron_bar.jpg',
@@ -178,7 +159,6 @@ const miningMaterials: TMiningMaterials = {
       unitPrice: { gold: 0, silver: 0, copper: 0 },
       stackPrice: { gold: 0, silver: 0, copper: 0 },
       quantity: 1,
-      recipes: [],
     },
   },
   steel: {
@@ -188,7 +168,6 @@ const miningMaterials: TMiningMaterials = {
       unitPrice: { gold: 0, silver: 0, copper: 0 },
       stackPrice: { gold: 0, silver: 0, copper: 0 },
       quantity: 1,
-      recipes: [],
     },
     bar: {
       image: 'steel_bar.jpg',
@@ -196,7 +175,6 @@ const miningMaterials: TMiningMaterials = {
       unitPrice: { gold: 0, silver: 0, copper: 0 },
       stackPrice: { gold: 0, silver: 0, copper: 0 },
       quantity: 1,
-      recipes: [],
     },
   },
   bronze: {
@@ -206,7 +184,6 @@ const miningMaterials: TMiningMaterials = {
       unitPrice: { gold: 0, silver: 0, copper: 0 },
       stackPrice: { gold: 0, silver: 0, copper: 0 },
       quantity: 1,
-      recipes: [],
     },
     bar: {
       image: 'bronze_bar.jpg',
@@ -214,9 +191,8 @@ const miningMaterials: TMiningMaterials = {
       unitPrice: { gold: 0, silver: 0, copper: 0 },
       stackPrice: { gold: 0, silver: 0, copper: 0 },
       quantity: 1,
-      recipes: ['bronzeBar'],
     },
   },
-};
+} as const;
 
 export default miningMaterials;

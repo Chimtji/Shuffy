@@ -1,5 +1,5 @@
-import { TMiningRecipe, TMiningRecipeIds } from '@/store/mining/types';
+import { TAreaName, TAreas, TRecipe } from '@/store/materials/types';
 
-export type TRowProps = {
-  recipe: TMiningRecipe & { id: TMiningRecipeIds };
+export type TRowProps<T extends TAreaName> = {
+  recipe: TRecipe<T> & { id: TAreas[T]['recipes'] };
 };

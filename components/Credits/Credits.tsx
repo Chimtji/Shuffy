@@ -1,5 +1,4 @@
-import { Title, Text, Anchor } from '@mantine/core';
-import classes from './Credits.module.css';
+import { Text, Anchor } from '@mantine/core';
 
 export function Credits() {
   return (
