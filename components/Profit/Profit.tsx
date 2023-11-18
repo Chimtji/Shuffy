@@ -1,3 +1,5 @@
+'use client';
+
 import { Box, Title, Image, Group } from '@mantine/core';
 import classes from './Profit.module.css';
 import NextImage from 'next/image';
@@ -8,7 +10,6 @@ import { useEffect, useState } from 'react';
 import useMiningStore from '@/store/materials/store';
 import { useShallow } from 'zustand/react/shallow';
 import useUiStore from '@/store/ui/store';
-import { TPrice } from '@/types';
 import { TAreaName, TAreasState } from '@/store/materials/types';
 
 const Profit = <A extends TAreaName>({ recipe, className }: TProfitProps<A>) => {

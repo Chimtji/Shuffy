@@ -1,3 +1,5 @@
+'use client';
+
 import { Group, NumberInput, Image } from '@mantine/core';
 import classes from './GoldInput.module.css';
 import goldCoinImg from '@/public/coins/gold.gif';

@@ -1,3 +1,5 @@
+'use client';
+
 import { Box } from '@mantine/core';
 import classes from './ItemsGrid.module.css';
 import Row from './Row/Row';

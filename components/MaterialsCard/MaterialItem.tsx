@@ -1,3 +1,5 @@
+'use client';
+
 import GoldInput from '@/components/GoldInput/GoldInput';
 import { Image, Box, Text, NumberInput } from '@mantine/core';
 import NextImage from 'next/image';

@@ -1,3 +1,5 @@
+'use client';
+
 import { Text, Anchor } from '@mantine/core';
 
 export function Credits() {

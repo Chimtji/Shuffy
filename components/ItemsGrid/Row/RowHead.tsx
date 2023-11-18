@@ -1,3 +1,5 @@
+'use client';
+
 import { Box, Group, Text } from '@mantine/core';
 import classes from './Row.module.css';
 import { IconRefresh } from '@tabler/icons-react';

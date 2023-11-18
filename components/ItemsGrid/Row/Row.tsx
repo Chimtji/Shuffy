@@ -1,12 +1,12 @@
+'use client';
+
 import { Box } from '@mantine/core';
 import classes from './Row.module.css';
 import { IconArrowNarrowRight, IconArrowsRight } from '@tabler/icons-react';
 import { TRowProps } from './types';
 import MaterialsCard from '@/components/MaterialsCard/MaterialCard';
 import Profit from '@/components/Profit/Profit';
-import { TAreaName, TAreasState } from '@/store/materials/types';
-import useMaterialsStore from '@/store/materials/store';
-import { useShallow } from 'zustand/react/shallow';
+import { TAreaName } from '@/store/materials/types';
 
 const Row = <A extends TAreaName>({ recipe, id, area }: TRowProps<A>) => {
   return (

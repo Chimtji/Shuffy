@@ -5,33 +5,25 @@ import { produce } from 'immer';
 
 const useUiStore = create<TUiStore>()(
   subscribeWithSelector(
-    devtools(
-      persist(
-        (set, get) => ({
-          priceVariant: 'unit',
-          area: 'mining',
-          switchArea: (to) => {
-            set(
-              produce((state) => {
-                state.area = to;
-              }),
-            );
-          },
-          switchPriceVariant: () => {
-            set(
-              produce((state) => {
-                const newVariant = get().priceVariant === 'unit' ? 'stack' : 'unit';
-                state.priceVariant = newVariant;
-              }),
-            );
-          },
-        }),
-        {
-          name: 'ui-store',
-        },
-      ),
-      { trace: true },
-    ),
+    devtools((set, get) => ({
+      priceVariant: 'unit',
+      area: 'mining',
+      switchArea: (to) => {
+        set(
+          produce((state) => {
+            state.area = to;
+          }),
+        );
+      },
+      switchPriceVariant: () => {
+        set(
+          produce((state) => {
+            const newVariant = get().priceVariant === 'unit' ? 'stack' : 'unit';
+            state.priceVariant = newVariant;
+          }),
+        );
+      },
+    })),
   ),
 );
 export default useUiStore;

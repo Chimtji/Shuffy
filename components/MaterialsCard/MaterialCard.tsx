@@ -1,12 +1,14 @@
+'use client';
+
 import { Group, Paper, Text, Tooltip } from '@mantine/core';
 import classes from './MaterialCard.module.css';
 import { TMaterialCardProps } from './types';
 import { uuid } from 'uuidv4';
 import MaterialItem from './MaterialItem';
+
 import { TAreaName, TAreasState } from '@/store/materials/types';
-import { IconAlertTriangle, IconError404, IconInfoCircle } from '@tabler/icons-react';
+import { IconAlertTriangle, IconInfoCircle } from '@tabler/icons-react';
 import useMaterialsStore from '@/store/materials/store';
-import { findMaterial } from '@/helpers/store';
 import { useEffect, useState } from 'react';
 import { useShallow } from 'zustand/react/shallow';
 

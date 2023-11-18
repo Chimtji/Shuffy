@@ -1,3 +1,5 @@
+'use client';
+
 import { Title, Text, Box } from '@mantine/core';
 import classes from './Hero.module.css';
 
