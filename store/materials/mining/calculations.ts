@@ -2,6 +2,10 @@ import { TCalculations } from '../types';
 
 const miningCalculations: TCalculations<'mining'> = {
   copperBar: {
+    validation: {
+      valid: true,
+      errorType: null,
+    },
     profit: {
       percent: 0,
       price: {
@@ -19,6 +23,10 @@ const miningCalculations: TCalculations<'mining'> = {
     },
   },
   tinBar: {
+    validation: {
+      valid: true,
+      errorType: null,
+    },
     profit: {
       percent: 0,
       price: {
@@ -36,6 +44,10 @@ const miningCalculations: TCalculations<'mining'> = {
     },
   },
   bronzeBar: {
+    validation: {
+      valid: true,
+      errorType: null,
+    },
     profit: {
       percent: 0,
       price: {
@@ -53,6 +65,10 @@ const miningCalculations: TCalculations<'mining'> = {
     },
   },
   silverBar: {
+    validation: {
+      valid: true,
+      errorType: null,
+    },
     profit: {
       percent: 0,
       price: {
@@ -70,6 +86,10 @@ const miningCalculations: TCalculations<'mining'> = {
     },
   },
   ironBar: {
+    validation: {
+      valid: true,
+      errorType: null,
+    },
     profit: {
       percent: 0,
       price: {
@@ -87,6 +107,10 @@ const miningCalculations: TCalculations<'mining'> = {
     },
   },
   steelBar: {
+    validation: {
+      valid: true,
+      errorType: null,
+    },
     profit: {
       percent: 0,
       price: {
@@ -104,6 +128,10 @@ const miningCalculations: TCalculations<'mining'> = {
     },
   },
   goldBar: {
+    validation: {
+      valid: true,
+      errorType: null,
+    },
     profit: {
       percent: 0,
       price: {
@@ -121,6 +149,10 @@ const miningCalculations: TCalculations<'mining'> = {
     },
   },
   mithrilBar: {
+    validation: {
+      valid: true,
+      errorType: null,
+    },
     profit: {
       percent: 0,
       price: {
@@ -138,6 +170,10 @@ const miningCalculations: TCalculations<'mining'> = {
     },
   },
   truesilverBar: {
+    validation: {
+      valid: true,
+      errorType: null,
+    },
     profit: {
       percent: 0,
       price: {
@@ -155,6 +191,10 @@ const miningCalculations: TCalculations<'mining'> = {
     },
   },
   thoriumBar: {
+    validation: {
+      valid: true,
+      errorType: null,
+    },
     profit: {
       percent: 0,
       price: {
@@ -172,6 +212,10 @@ const miningCalculations: TCalculations<'mining'> = {
     },
   },
   darkIronBar: {
+    validation: {
+      valid: true,
+      errorType: null,
+    },
     profit: {
       percent: 0,
       price: {

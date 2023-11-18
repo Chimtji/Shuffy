@@ -16,6 +16,7 @@ const ItemsGrid = () => {
       <RowHead />
       {Object.keys(recipes).map((name) => (
         <Row<typeof area>
+          area={area}
           key={uuid()}
           recipe={recipes[name as keyof typeof recipes]}
           id={name as TAreas[typeof area]['recipes']}

@@ -71,8 +71,14 @@ export type TMaterials<A extends TAreaName> = {
 
 export type TRecipes<A extends TAreaName> = { [id in TAreas[A]['recipes']]: TRecipe<A> };
 
+export type TValidationErrorType = 'materialPrice' | 'productPrice' | null;
+export type TValidation = {
+  valid: boolean;
+  errorType: TValidationErrorType;
+};
 export type TCalculations<A extends TAreaName> = {
   [id in TAreas[A]['calculations']]: {
+    validation?: TValidation;
     profit: {
       percent: number;
       price: {

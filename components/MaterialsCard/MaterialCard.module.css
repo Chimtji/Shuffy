@@ -7,6 +7,14 @@
   grid-template-columns: 3em 1fr;
   grid-template-rows: 3em;
   grid-template-columns: 1fr !important;
+  transition: all 0.2s ease-in-out;
+  border: 1px solid rgba(255, 107, 107, 0);
+  background-clip: padding-box;
+  -webkit-background-clip: padding-box;
+
+  &[data-valid='false'] {
+    border: 1px solid rgba(255, 107, 107, 1);
+  }
 }
 .item {
   display: grid;

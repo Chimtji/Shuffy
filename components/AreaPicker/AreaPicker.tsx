@@ -3,7 +3,7 @@
 import { TAreaName } from '@/store/materials/types';
 import useUiStore from '@/store/ui/store';
 import { Box, Center, Group, SegmentedControl, rem } from '@mantine/core';
-import { IconEye, IconFlame, IconMountain, IconNeedleThread } from '@tabler/icons-react';
+import { IconFlame, IconFlask, IconMountain, IconNeedleThread } from '@tabler/icons-react';
 import { useShallow } from 'zustand/react/shallow';
 
 export function AreaPicker() {
@@ -45,6 +45,16 @@ export function AreaPicker() {
               <Center>
                 <IconFlame style={{ width: rem(16), height: rem(16) }} />
                 <Box ml={10}>Elements</Box>
+              </Center>
+            ),
+          },
+          {
+            value: 'alchemy',
+            disabled: true,
+            label: (
+              <Center>
+                <IconFlask style={{ width: rem(16), height: rem(16) }} />
+                <Box ml={10}>Alchemy (Coming..)</Box>
               </Center>
             ),
           },

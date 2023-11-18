@@ -2,6 +2,10 @@ import { TCalculations } from '../types';
 
 const tailoringCalculations: TCalculations<'elemental'> = {
   lesserAstral: {
+    validation: {
+      valid: true,
+      errorType: null,
+    },
     profit: {
       percent: 0,
       price: {
@@ -19,6 +23,10 @@ const tailoringCalculations: TCalculations<'elemental'> = {
     },
   },
   lesserEternal: {
+    validation: {
+      valid: true,
+      errorType: null,
+    },
     profit: {
       percent: 0,
       price: {
@@ -36,6 +44,10 @@ const tailoringCalculations: TCalculations<'elemental'> = {
     },
   },
   lesserMagic: {
+    validation: {
+      valid: true,
+      errorType: null,
+    },
     profit: {
       percent: 0,
       price: {
@@ -53,6 +65,10 @@ const tailoringCalculations: TCalculations<'elemental'> = {
     },
   },
   lesserMystic: {
+    validation: {
+      valid: true,
+      errorType: null,
+    },
     profit: {
       percent: 0,
       price: {
@@ -70,6 +86,10 @@ const tailoringCalculations: TCalculations<'elemental'> = {
     },
   },
   lesserNether: {
+    validation: {
+      valid: true,
+      errorType: null,
+    },
     profit: {
       percent: 0,
       price: {
@@ -87,6 +107,10 @@ const tailoringCalculations: TCalculations<'elemental'> = {
     },
   },
   greaterAstral: {
+    validation: {
+      valid: true,
+      errorType: null,
+    },
     profit: {
       percent: 0,
       price: {
@@ -104,6 +128,10 @@ const tailoringCalculations: TCalculations<'elemental'> = {
     },
   },
   greaterEternal: {
+    validation: {
+      valid: true,
+      errorType: null,
+    },
     profit: {
       percent: 0,
       price: {
@@ -121,6 +149,10 @@ const tailoringCalculations: TCalculations<'elemental'> = {
     },
   },
   greaterMagic: {
+    validation: {
+      valid: true,
+      errorType: null,
+    },
     profit: {
       percent: 0,
       price: {
@@ -138,6 +170,10 @@ const tailoringCalculations: TCalculations<'elemental'> = {
     },
   },
   greaterMystic: {
+    validation: {
+      valid: true,
+      errorType: null,
+    },
     profit: {
       percent: 0,
       price: {
@@ -155,6 +191,10 @@ const tailoringCalculations: TCalculations<'elemental'> = {
     },
   },
   greaterNether: {
+    validation: {
+      valid: true,
+      errorType: null,
+    },
     profit: {
       percent: 0,
       price: {

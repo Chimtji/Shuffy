@@ -1,6 +1,6 @@
 import { produce } from 'immer';
 import { create } from 'zustand';
-import { TAreaName, TMaterialsStore } from './types';
+import { TAreaName, TMaterialsStore, TValidationErrorType } from './types';
 import { subscribeWithSelector, devtools } from 'zustand/middleware';
 import { shallow } from 'zustand/shallow';
 import {
@@ -122,11 +122,13 @@ allMaterials.forEach(({ id, type, area, ...recipeMaterial }) => {
         'unitPrice'
       ],
     ],
-    (stack, unit) => {
+    () => {
       const state = useMaterialsStore.getState()[area as TAreaName];
-      // console.log(id, type, area, stack, unit);
       relatedRecipes.forEach((recipe) => {
+        let errorType: TValidationErrorType = null;
         let totalMaterialCost = 0;
+        const productState =
+          state.materials[recipe.product.id as keyof typeof state.materials][recipe.product.type];
 
         recipe.materials.forEach((material) => {
           const materialState =
@@ -134,15 +136,29 @@ allMaterials.forEach(({ id, type, area, ...recipeMaterial }) => {
           totalMaterialCost += calcPriceToCopper(materialState['stackPrice']);
         });
 
-        const productState =
-          state.materials[recipe.product.id as keyof typeof state.materials][recipe.product.type];
+        if (calcPriceToCopper(productState['stackPrice']) === 0) {
+          errorType = 'productPrice';
+        }
+
+        if (totalMaterialCost === 0) {
+          errorType = 'materialPrice';
+        }
+        if (errorType !== null) {
+          useMaterialsStore.setState(
+            produce((s) => {
+              if (s[area].calculations[recipe.id].validation) {
+                s[area].calculations[recipe.id].validation.valid = false;
+                s[area].calculations[recipe.id].validation.errorType = errorType;
+              }
+            }),
+          );
+          return;
+        }
 
         const stackProfit = calcPriceDifference(
           calcCopperToPrice(totalMaterialCost),
           productState['stackPrice'],
         );
-
-        console.log('product State:', productState);
 
         const unitProfit = calcCopperToPrice(
           calcPriceToCopper(stackProfit) / productState['quantity'],
@@ -158,6 +174,9 @@ allMaterials.forEach(({ id, type, area, ...recipeMaterial }) => {
             s[area].calculations[recipe.id].profit.price.stack = stackProfit;
             s[area].calculations[recipe.id].profit.price.unit = unitProfit;
             s[area].calculations[recipe.id].profit.percent = profitPercent;
+            if (s[area].calculations[recipe.id].validation) {
+              s[area].calculations[recipe.id].validation.valid = true;
+            }
           }),
         );
       });

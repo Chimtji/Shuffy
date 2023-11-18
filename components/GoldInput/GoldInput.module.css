@@ -8,6 +8,10 @@
   border: rem(1px) solid var(--mantine-color-gray-4);
   height: 100%;
 
+  img {
+    width: rem(12px);
+  }
+
   @mixin dark {
     border: rem(1px) solid var(--mantine-color-dark-4);
   }

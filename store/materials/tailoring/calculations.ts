@@ -2,6 +2,10 @@ import { TCalculations } from '../types';
 
 const tailoringCalculations: TCalculations<'tailoring'> = {
   boltOfLinenCloth: {
+    validation: {
+      valid: true,
+      errorType: null,
+    },
     profit: {
       percent: 0,
       price: {
@@ -19,6 +23,10 @@ const tailoringCalculations: TCalculations<'tailoring'> = {
     },
   },
   boltOfMageweave: {
+    validation: {
+      valid: true,
+      errorType: null,
+    },
     profit: {
       percent: 0,
       price: {
@@ -36,6 +44,10 @@ const tailoringCalculations: TCalculations<'tailoring'> = {
     },
   },
   boltOfRuneCloth: {
+    validation: {
+      valid: true,
+      errorType: null,
+    },
     profit: {
       percent: 0,
       price: {
@@ -53,6 +65,10 @@ const tailoringCalculations: TCalculations<'tailoring'> = {
     },
   },
   boltOfSilkCloth: {
+    validation: {
+      valid: true,
+      errorType: null,
+    },
     profit: {
       percent: 0,
       price: {
@@ -70,6 +86,10 @@ const tailoringCalculations: TCalculations<'tailoring'> = {
     },
   },
   boltOfWoolenCloth: {
+    validation: {
+      valid: true,
+      errorType: null,
+    },
     profit: {
       percent: 0,
       price: {

@@ -2,12 +2,33 @@ import { removeDuplicates } from '@/utilities';
 import {
   TAreaName,
   TAreasState,
+  TMaterialItem,
   TMaterialsStore,
   TRecipe,
   TRecipeItem,
-  TRecipes,
 } from '@/store/materials/types';
 import { TAreas } from '@/store/materials/areas';
+import useMaterialsStore from '@/store/materials/store';
+
+export const findMaterial = (id: string, type: string): TMaterialItem | null => {
+  const state = useMaterialsStore.getState();
+  let result: TMaterialItem | null = null;
+
+  Object.keys(state).forEach((area) => {
+    const materials = state[area as TAreaName].materials;
+    if (materials) {
+      const material = materials[id as keyof typeof materials];
+      if (material) {
+        const item = material[type as keyof typeof material];
+        if (item) {
+          result = item as TMaterialItem;
+        }
+      }
+    }
+  });
+
+  return result;
+};
 
 export const findRecipes = <A extends TAreaName>(
   id: TAreas[A]['materials'],
