@@ -3,7 +3,7 @@
 import { TAreaName } from '@/store/materials/types';
 import useUiStore from '@/store/ui/store';
 import { Box, Center, Group, SegmentedControl, rem } from '@mantine/core';
-import { IconEye } from '@tabler/icons-react';
+import { IconEye, IconFlame, IconMountain, IconNeedleThread } from '@tabler/icons-react';
 import { useShallow } from 'zustand/react/shallow';
 
 export function AreaPicker() {
@@ -25,7 +25,7 @@ export function AreaPicker() {
             value: 'mining',
             label: (
               <Center>
-                <IconEye style={{ width: rem(16), height: rem(16) }} />
+                <IconMountain style={{ width: rem(16), height: rem(16) }} />
                 <Box ml={10}>Mining</Box>
               </Center>
             ),
@@ -34,7 +34,7 @@ export function AreaPicker() {
             value: 'tailoring',
             label: (
               <Center>
-                <IconEye style={{ width: rem(16), height: rem(16) }} />
+                <IconNeedleThread style={{ width: rem(16), height: rem(16) }} />
                 <Box ml={10}>Tailoring</Box>
               </Center>
             ),
@@ -43,7 +43,7 @@ export function AreaPicker() {
             value: 'elemental',
             label: (
               <Center>
-                <IconEye style={{ width: rem(16), height: rem(16) }} />
+                <IconFlame style={{ width: rem(16), height: rem(16) }} />
                 <Box ml={10}>Elements</Box>
               </Center>
             ),

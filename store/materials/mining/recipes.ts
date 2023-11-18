@@ -3,6 +3,7 @@ import { TRecipes } from '../types';
 const miningRecipes: TRecipes<'mining'> = {
   copperBar: {
     name: 'Copper Bar Recipe',
+    requirement: 'Mining Level 25',
     materials: [
       {
         id: 'copper',
@@ -18,6 +19,7 @@ const miningRecipes: TRecipes<'mining'> = {
   },
   tinBar: {
     name: 'Tin Bar Recipe',
+    requirement: 'Mining Level 65',
     materials: [
       {
         id: 'tin',
@@ -33,6 +35,7 @@ const miningRecipes: TRecipes<'mining'> = {
   },
   bronzeBar: {
     name: 'Bronze Bar Recipe',
+    requirement: 'Mining Level 65',
     materials: [
       {
         id: 'copper',
@@ -53,6 +56,7 @@ const miningRecipes: TRecipes<'mining'> = {
   },
   silverBar: {
     name: 'Silver Bar Recipe',
+    requirement: 'Mining Level 75',
     materials: [
       {
         id: 'silver',
@@ -68,6 +72,7 @@ const miningRecipes: TRecipes<'mining'> = {
   },
   ironBar: {
     name: 'Iron Bar Recipe',
+    requirement: 'Mining Level 125',
     materials: [
       {
         id: 'iron',
@@ -83,6 +88,7 @@ const miningRecipes: TRecipes<'mining'> = {
   },
   steelBar: {
     name: 'Steel Bar Recipe',
+    requirement: 'Mining Level 165',
     materials: [
       {
         id: 'coal',
@@ -103,6 +109,7 @@ const miningRecipes: TRecipes<'mining'> = {
   },
   goldBar: {
     name: 'Gold Bar Recipe',
+    requirement: 'Mining Level 155',
     materials: [
       {
         id: 'gold',
@@ -118,6 +125,7 @@ const miningRecipes: TRecipes<'mining'> = {
   },
   mithrilBar: {
     name: 'Mithril Bar Recipe',
+    requirement: 'Mining Level 175',
     materials: [
       {
         id: 'mithril',
@@ -133,6 +141,7 @@ const miningRecipes: TRecipes<'mining'> = {
   },
   truesilverBar: {
     name: 'Truesilver Bar Recipe',
+    requirement: 'Mining Level 230',
     materials: [
       {
         id: 'truesilver',
@@ -148,6 +157,7 @@ const miningRecipes: TRecipes<'mining'> = {
   },
   thoriumBar: {
     name: 'Thorium Bar Recipe',
+    requirement: 'Mining Level 250',
     materials: [
       {
         id: 'thorium',
@@ -163,6 +173,7 @@ const miningRecipes: TRecipes<'mining'> = {
   },
   darkIronBar: {
     name: 'Dark Iron Bar Recipe',
+    requirement: 'Mining Level 230',
     materials: [
       {
         id: 'darkIron',

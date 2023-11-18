@@ -1,7 +1,7 @@
 import { produce } from 'immer';
 import { create } from 'zustand';
 import { TAreaName, TMaterialsStore } from './types';
-import { persist, subscribeWithSelector, devtools } from 'zustand/middleware';
+import { subscribeWithSelector, devtools } from 'zustand/middleware';
 import { shallow } from 'zustand/shallow';
 import {
   calcCopperToPrice,
@@ -17,50 +17,42 @@ import { areasState } from './areas';
 
 const useMaterialsStore = create<TMaterialsStore>()(
   subscribeWithSelector(
-    devtools(
-      persist(
-        (set) => ({
-          updateMaterialQuantity: ({ area, id, type, quantity }) =>
-            set(
-              produce((state) => {
-                const item = state[area].materials[id][type];
-                const stackPrice = calcStackPrice(quantity as number, item.unitPrice as TPrice);
+    devtools((set) => ({
+      updateMaterialQuantity: ({ area, id, type, quantity }) =>
+        set(
+          produce((state) => {
+            const item = state[area].materials[id][type];
+            const stackPrice = calcStackPrice(quantity as number, item.unitPrice as TPrice);
 
-                state[area].materials[id][type].quantity = quantity;
-                state[area].materials[id][type].stackPrice = stackPrice;
-              }),
-              false,
-              `updateQuantity/${id}`,
-            ),
-          updatePrice: ({ area, id, type, price, variant }) =>
-            set(
-              produce((state) => {
-                const item = state[area].materials[id][type];
-                let stackPrice = item.stackPrice;
-                let unitPrice = item.unitPrice;
+            state[area].materials[id][type].quantity = quantity;
+            state[area].materials[id][type].stackPrice = stackPrice;
+          }),
+          false,
+          `updateQuantity/${id}`,
+        ),
+      updatePrice: ({ area, id, type, price, variant }) =>
+        set(
+          produce((state) => {
+            const item = state[area].materials[id][type];
+            let stackPrice = item.stackPrice;
+            let unitPrice = item.unitPrice;
 
-                if (variant === 'unit') {
-                  unitPrice = price;
-                  stackPrice = calcStackPrice(item.quantity as number, price as TPrice);
-                } else {
-                  stackPrice = price;
-                  unitPrice = calcUnitPrice(item.quantity as number, price);
-                }
+            if (variant === 'unit') {
+              unitPrice = price;
+              stackPrice = calcStackPrice(item.quantity as number, price as TPrice);
+            } else {
+              stackPrice = price;
+              unitPrice = calcUnitPrice(item.quantity as number, price);
+            }
 
-                state[area].materials[id][type].unitPrice = unitPrice;
-                state[area].materials[id][type].stackPrice = stackPrice;
-              }),
-              false,
-              `updatePrice/${id}`,
-            ),
-          ...areasState,
-        }),
-        {
-          name: 'materials-store',
-        },
-      ),
-      { trace: true },
-    ),
+            state[area].materials[id][type].unitPrice = unitPrice;
+            state[area].materials[id][type].stackPrice = stackPrice;
+          }),
+          false,
+          `updatePrice/${id}`,
+        ),
+      ...areasState,
+    })),
   ),
 );
 

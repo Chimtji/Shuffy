@@ -16,66 +16,6 @@ const tailoringRecipes: TRecipes<'elemental'> = {
       quantity: 1,
     },
   },
-  greaterEternal: {
-    name: 'Greater Eternal Essence Recipe',
-    materials: [
-      {
-        id: 'eternal',
-        type: 'lesser',
-        quantity: 3,
-      },
-    ],
-    product: {
-      id: 'eternal',
-      type: 'greater',
-      quantity: 1,
-    },
-  },
-  greaterMagic: {
-    name: 'Greater Magic Essence Recipe',
-    materials: [
-      {
-        id: 'magic',
-        type: 'lesser',
-        quantity: 3,
-      },
-    ],
-    product: {
-      id: 'magic',
-      type: 'greater',
-      quantity: 1,
-    },
-  },
-  greaterMystic: {
-    name: 'Greater Mystic Essence Recipe',
-    materials: [
-      {
-        id: 'mystic',
-        type: 'lesser',
-        quantity: 3,
-      },
-    ],
-    product: {
-      id: 'mystic',
-      type: 'greater',
-      quantity: 1,
-    },
-  },
-  greaterNether: {
-    name: 'Greater Nether Essence Recipe',
-    materials: [
-      {
-        id: 'nether',
-        type: 'lesser',
-        quantity: 3,
-      },
-    ],
-    product: {
-      id: 'nether',
-      type: 'greater',
-      quantity: 1,
-    },
-  },
   lesserAstral: {
     name: 'lesser Astral Essence Recipe',
     materials: [
@@ -89,6 +29,21 @@ const tailoringRecipes: TRecipes<'elemental'> = {
       id: 'astral',
       type: 'lesser',
       quantity: 3,
+    },
+  },
+  greaterEternal: {
+    name: 'Greater Eternal Essence Recipe',
+    materials: [
+      {
+        id: 'eternal',
+        type: 'lesser',
+        quantity: 3,
+      },
+    ],
+    product: {
+      id: 'eternal',
+      type: 'greater',
+      quantity: 1,
     },
   },
   lesserEternal: {
@@ -106,6 +61,21 @@ const tailoringRecipes: TRecipes<'elemental'> = {
       quantity: 3,
     },
   },
+  greaterMagic: {
+    name: 'Greater Magic Essence Recipe',
+    materials: [
+      {
+        id: 'magic',
+        type: 'lesser',
+        quantity: 3,
+      },
+    ],
+    product: {
+      id: 'magic',
+      type: 'greater',
+      quantity: 1,
+    },
+  },
   lesserMagic: {
     name: 'lesser Magic Essence Recipe',
     materials: [
@@ -121,6 +91,21 @@ const tailoringRecipes: TRecipes<'elemental'> = {
       quantity: 3,
     },
   },
+  greaterMystic: {
+    name: 'Greater Mystic Essence Recipe',
+    materials: [
+      {
+        id: 'mystic',
+        type: 'lesser',
+        quantity: 3,
+      },
+    ],
+    product: {
+      id: 'mystic',
+      type: 'greater',
+      quantity: 1,
+    },
+  },
   lesserMystic: {
     name: 'lesser Mystic Essence Recipe',
     materials: [
@@ -134,6 +119,21 @@ const tailoringRecipes: TRecipes<'elemental'> = {
       id: 'mystic',
       type: 'lesser',
       quantity: 3,
+    },
+  },
+  greaterNether: {
+    name: 'Greater Nether Essence Recipe',
+    materials: [
+      {
+        id: 'nether',
+        type: 'lesser',
+        quantity: 3,
+      },
+    ],
+    product: {
+      id: 'nether',
+      type: 'greater',
+      quantity: 1,
     },
   },
   lesserNether: {

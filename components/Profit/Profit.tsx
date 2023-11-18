@@ -58,7 +58,7 @@ const Profit = <A extends TAreaName>({ recipe, className }: TProfitProps<A>) => 
       <Group className={classes.content}>
         {hasProfit ? (
           <Group className={classes.withProfit}>
-            <Group className={classes.price}>
+            <Group className={classes.price} wrap="nowrap">
               <Title order={3}>{profit.price.stack.gold}</Title>
               <Image src={goldCoinImg} component={NextImage} alt={''} fit="contain" width={17} />
               <Title order={3}>{profit.price.stack.silver}</Title>
